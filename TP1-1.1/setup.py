@@ -6,10 +6,11 @@ from distutils.core import setup
 # README file and 2) it's easier to type in the README file than to put a raw
 # string in below ...
 setup(
-    name = "TP1",
-    author = "Daix Theo, Verhoye Victor",
+    name="TP1",
+    author="Daix Theo, Verhoye Victor",
     version="1.1",
-    author_email = "theo.daix@student.umons.ac.be, victor.verhoye@student.umons.ac.be",
-    description = ("TP1 : Recherche d'intersections entre deux courbes"),
-    keywords = "recherche_racine"
-    )
+    author_email="theo.daix@student.umons.ac.be,\
+    victor.verhoye@student.umons.ac.be",
+    description="TP1 : Recherche d'intersections entre deux courbes",
+    keywords="recherche_racine"
+)
