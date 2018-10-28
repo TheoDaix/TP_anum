@@ -4,7 +4,7 @@ from math import sin, cos, pi
 
 def cbrt(x):
     """
-    Redefinition de la racine cubique d'un nombre
+    Redefinition de la racine cubique d'un nombre.
     """
     if x >= 0:
         return x ** (1 / 3)
@@ -86,4 +86,4 @@ if __name__ == '__main__':
     a = float(ldc[1])
     b = intersections(a)
     for i in b :
-        print("%.8f %.8f" % (i[0], i[1]))
+        print("%.16g %.16g" % (i[0], i[1]))
