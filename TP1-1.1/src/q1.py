@@ -86,4 +86,4 @@ if __name__ == '__main__':
     a = float(ldc[1])
     b = intersections(a)
     for i in b :
-        print("%.8g %.8g" % (i[0], i[1]))
+        print("%.8f %.8f" % (i[0], i[1]))
