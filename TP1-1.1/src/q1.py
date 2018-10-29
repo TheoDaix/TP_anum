@@ -41,7 +41,7 @@ def df(a, x, b_inf, b_sup):
 
 def intersections(a):
     """
-    Methode qui calcule les intersection entre la courbe donnee par
+    Methode qui calcule les intersections entre la courbe donnee par
     (x sin(x), x + sin(x) * sin(x)) et abs(sqrt3(x)) en fonction du parametre a
     entre en ligne de commande.
     On recherche les minimums locaux de la fonction, pour ce faire, on
@@ -54,9 +54,9 @@ def intersections(a):
     if a == 0:
         return intersections
     elif a < 1e-10 or a > 1e5:
-        raise Exception("La valeur de a rentree demande trop de precision.")
+        raise Exception("La valeur de a entree demande trop de precision.")
     elif a < 0:
-        raise Exception("La valeur rentree doit etre positive.")
+        raise Exception("La valeur entree doit etre positive.")
     else:
         min_loc = pi/2
         while f(a, min_loc) >= 0:
