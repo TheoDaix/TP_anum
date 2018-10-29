@@ -36,7 +36,7 @@ def df(a, x, b_inf, b_sup):
     """
     sin_x = sin(x)
     cos_x = cos(x)
-    return cbrt((x * sin_x)**2) + 2  * (cbrt(x * sin_x)**2) * sin_x *\
+    return cbrt((x * sin_x)**2) + 2 * (cbrt(x * sin_x)**2) * sin_x *\
     cos_x - sign(sin, b_inf, b_sup) * a / 3 * (sin_x + x * cos_x)
 
 def intersections(a):
@@ -66,7 +66,8 @@ def intersections(a):
         intersections.append((racine * sin_rac, racine + sin_rac ** 2))
         min_loc = spo.brentq(lambda x : df(a, x, pi, 2 * pi), pi, 2 * pi)
         k = 1
-        while f(a, min_loc) <= 0:
+        f_min = f(a, min_loc)
+        while f_min < 0:
             racine = spo.brentq(lambda x: f(a, x), k * pi, min_loc)
             sin_rac = sin(racine)
             intersections.append((racine * sin_rac, racine + sin_rac ** 2))
@@ -76,6 +77,10 @@ def intersections(a):
             k = k + 1
             min_loc = spo.brentq(lambda x: df(a, x, k * pi, (k + 1) * pi),\
             k * pi, (k + 1) * pi)
+            f_min = f(a, min_loc)
+        if(f_min == 0):
+            sin_rac = sin(min_loc)
+            intersections.append((min_loc * sin_rac, min_loc + sin_rac ** 2))
         return intersections
 
 if __name__ == '__main__':
