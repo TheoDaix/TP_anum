@@ -10,9 +10,9 @@ def solution_systeme(A, B):
                 X.append([j])
         return X
     elif sol[3] > 0:
-        raise Exception("Le système comporte une infinité de solutions")
+        raise Exception("Le système comporte une infinité de solutions ou est impossible.")
     else:
-        raise Exception("Le système est impossible")
+        raise Exception("Un des arguments n'est pas valide.")
 
 def formMat(args):
     M = int(args[0])
@@ -64,10 +64,6 @@ if __name__ == '__main__':
     At = transpose(A)
     prod = multMat(At, A)
     prod1 = multMat(At, B)
-    print("A =", A)
-    print("B =", B)
-    print("At =", At)
-    print("At * A =", prod)
-    print("At * B =", prod1)
     sol = solution_systeme(prod, prod1)
-    print("La solution est donc :", sol)
+    for i in range(0, N):
+        print(sol[i][0])
