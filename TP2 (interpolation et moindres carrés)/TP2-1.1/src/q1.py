@@ -66,4 +66,4 @@ if __name__ == '__main__':
     prod1 = multMat(At, B)
     sol = solution_systeme(prod, prod1)
     for i in range(0, N):
-        print(sol[i][0])
+        print("%.16g" % sol[i][0])
