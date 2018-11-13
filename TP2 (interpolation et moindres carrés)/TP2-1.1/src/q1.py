@@ -1,4 +1,5 @@
 import scipy.linalg.lapack as sll
+import numpy as np
 from sys import argv as ldc
 
 def solution_systeme(A, B):
@@ -32,6 +33,8 @@ def formMat(args):
     return (M, N, A, B)
 
 def transpose(A):
+    return np.transpose(A)
+    """
     X = []
     for i in range(0, len(A[0])):
         list = []
@@ -39,8 +42,11 @@ def transpose(A):
             list.append(A[j][i])
         X.append(list)
     return X
+    """
 
 def multMat(A, B):
+    return np.dot(A, B)
+    """
     prod = []
     M = len(A)
     N = len(B)
@@ -54,6 +60,7 @@ def multMat(A, B):
             list.append(som)
         prod.append(list)
     return prod
+    """
 
 if __name__ == '__main__':
     """
