@@ -8,7 +8,7 @@ from distutils.core import setup
 setup(
     name="TP1",
     author="Daix Theo, Verhoye Victor",
-    version="1.3",
+    version="2.0",
     author_email="theo.daix@student.umons.ac.be,\
     victor.verhoye@student.umons.ac.be",
     description="TP1 : Recherche d'intersections entre deux courbes",
