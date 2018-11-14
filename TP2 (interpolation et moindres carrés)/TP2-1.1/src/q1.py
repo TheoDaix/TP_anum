@@ -4,15 +4,14 @@ from sys import argv as ldc
 
 def solution_systeme(A, B):
     """
-    Permet de resoudre un système Ax = B ou A est un produit d'une matrice
-    avec sa transposee.
+    Permet de resoudre un système Ax = B ou A est une matrice carree
     """
     sol = sll.dgesv(A, B)
     if sol[3] == 0 :
         return sol[2]
     elif sol[3] > 0:
-        raise Exception("Le systeme comporte une infinite de solutions ou \
-                        est impossible.")
+        raise Exception("Le systeme comporte une infinite de solutions ou est"
+                        " impossible.")
     else:
         raise Exception("Un des arguments n'est pas valide.")
 

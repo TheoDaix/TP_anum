@@ -16,8 +16,8 @@ def db(x):
 
 if __name__ == '__main__':
     """
-    Methode "main", elle lancera la methode principale avec la valeur donnee en
-    ligne de commande.
+    Methode "main", elle lancera la methode principale de q2 avec la valeur
+    donnee en ligne de commande et les fonctions definies ci-dessus.
     """
     sol = d(A, dA, b, db, float(s.argv[1]))
     for i in range(0, len(sol)):

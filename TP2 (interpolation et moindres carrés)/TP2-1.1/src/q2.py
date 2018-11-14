@@ -4,11 +4,11 @@ import q1
 
 def deriv(A, dA, B, dB, t):
     """
-    Fonction deriv qui prend en parametres les matrices A, B qui varient en
-    fonction de t ainsi que leur derivees respectives dA et dB.
-    On evalue d'abord les 4 matrices au moment t ; on se ramene ensuite a
-    calculer la solution premier systeme et finalement, après une serie de
-    manipulations, a calculer la solution d'un second systeme.
+    Fonction deriv qui prend en parametres les fonctions A et B, ainsi que leur
+    derivee respective dA et dB.
+    On evalue d'abord les 4 fonctions en t. On se ramene ensuite a
+    calculer la solution d'un premier systeme, et finalement, apres une serie
+    de manipulations, a calculer la solution d'un second systeme.
     """
     a = A(t)
     da = dA(t)
