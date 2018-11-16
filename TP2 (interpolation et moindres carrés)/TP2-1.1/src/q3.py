@@ -1,4 +1,4 @@
-from q2 import deriv as d
+import q2
 from math import sin, cos, atan, exp
 import sys as s
 
@@ -19,6 +19,6 @@ if __name__ == '__main__':
     Methode "main", elle lancera la methode principale de q2 avec la valeur
     donnee en ligne de commande et les fonctions definies ci-dessus.
     """
-    sol = d(A, dA, b, db, float(s.argv[1]))
+    sol = q2.deriv(A, dA, b, db, float(s.argv[1]))
     for i in range(0, len(sol)):
         print("%.16g" % sol[i])

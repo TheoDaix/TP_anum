@@ -17,21 +17,21 @@ def deriv(A, dA, B, dB, t):
     at = np.transpose(a)
     dat = np.transpose(da)
 
-    m = slb.sgemm(1, at, a)
-    m1 = slb.sgemm(1, at, b)
+    m = slb.dgemm(1, at, a)
+    m1 = slb.dgemm(1, at, b)
 
     x = q1.solution_systeme(m, m1)
 
-    m1 = slb.sgemm(1, dat, a)
-    m1 = slb.sgemm(1, m1, x)
-    m2 = slb.sgemm(1, at, da)
-    m2 = slb.sgemm(1, m2, x)
-    m1 = slb.saxpy(m1, m2)
+    m1 = slb.dgemm(1, dat, a)
+    m1 = slb.dgemm(1, m1, x)
+    m2 = slb.dgemm(1, at, da)
+    m2 = slb.dgemm(1, m2, x)
+    m1 = slb.daxpy(m1, m2)
 
-    m2 = slb.sgemm(1, dat, b)
-    m3 = slb.sgemm(1, at, db)
-    m2 = slb.saxpy(m2, m3)
+    m2 = slb.dgemm(1, dat, b)
+    m3 = slb.dgemm(1, at, db)
+    m2 = slb.daxpy(m2, m3)
 
-    m1 = slb.sscal(-1, m1)
-    m2 = slb.saxpy(m1, m2)
+    m1 = slb.dscal(-1, m1)
+    m2 = slb.daxpy(m1, m2)
     return q1.solution_systeme(m, m2)
