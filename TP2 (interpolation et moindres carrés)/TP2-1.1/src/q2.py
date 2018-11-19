@@ -22,16 +22,15 @@ def deriv(A, dA, B, dB, t):
 
     x = q1.solution_systeme(m, m1)
 
-    m1 = slb.dgemm(1, dat, a)
-    m1 = slb.dgemm(1, m1, x)
-    m2 = slb.dgemm(1, at, da)
-    m2 = slb.dgemm(1, m2, x)
-    m1 = slb.daxpy(m1, m2)
-
-    m2 = slb.dgemm(1, dat, b)
-    m3 = slb.dgemm(1, at, db)
-    m2 = slb.daxpy(m2, m3)
-
+    m1 = slb.dgemm(1, a, x)
     m1 = slb.dscal(-1, m1)
+    m1 = slb.daxpy(b, m1)
+    m1 = slb.dgemm(1, dat, m1)
+
+    m2 = slb.dgemm(1, da, x)
+    m2 = slb.dscal(-1, m2)
+    m2 = slb.daxpy(db, m2)
+    m2 = slb.dgemm(1, at, m2)
     m2 = slb.daxpy(m1, m2)
+
     return q1.solution_systeme(m, m2)

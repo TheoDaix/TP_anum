@@ -3,10 +3,10 @@ from math import sin, cos, atan, exp
 import sys as s
 
 def A(x):
-    return [[sin(x), x], [x, exp(x)], [atan(x), x]]
+    return [[sin(x), 2 * x], [x, exp(x)], [atan(x), x]]
 
 def dA(x):
-    return [[cos(x), 1], [1, exp(x)], [1/(1+x*x), 1]]
+    return [[cos(x), 2], [1, exp(x)], [1/(1+x*x), 1]]
 
 def b(x):
     return [[x], [x*x], [1/(1+x*x)]]

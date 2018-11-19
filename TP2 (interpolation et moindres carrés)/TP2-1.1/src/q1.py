@@ -7,11 +7,11 @@ def solution_systeme(A, B):
     Permet de resoudre un système Ax = B ou A est une matrice carree
     """
     sol = sll.dgesv(A, B)
-    if sol[3] == 0 :
+    if sol[3] == 0:
         return sol[2]
     elif sol[3] > 0:
         raise Exception("Le systeme comporte une infinite de solutions ou est"
-                        " impossible.")
+        " impossible.")
     else:
         raise Exception("Un des arguments n'est pas valide.")
 
