@@ -88,8 +88,7 @@ if __name__ == '__main__':
     Methode "main", elle lancera la methode principale avec la valeur donnee en
     ligne de commande.
     """
-    #a = float(ldc[1])
-    b = intersections(500)
+    a = float(ldc[1])
+    b = intersections(a)
     for i in b:
         print("%.16g %.16g" % i)
-    print(len(b))
