@@ -31,4 +31,17 @@ def dgamma(t):
 def ddgamma(t):
     return (0, 0)
 
+"""
+Exemple pour comprendre la fonction odeint (solution de du = u 
+=> retourne exp(x)
+def g(x, t):
+    return x*2
+
+def test():
+    t = np.linspace(0, 10, 11)
+    y = (1, 1)
+    return edo(g, y, t)
+print(test())
+"""
+
 print(trajectoire(gamma, dgamma, ddgamma, 0, 450))
