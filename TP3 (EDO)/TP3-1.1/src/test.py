@@ -14,11 +14,11 @@ def ddgamma(h, l, t):
 
 def test(mu, m, h, l):
     theta = atan(h/l)
-    t = sqrt(22/(9.81*cos(theta)*sin(theta)))
+    t = sqrt(2*l/(9.81*cos(theta)*sin(theta)))
     res = trajectoire.solution(lambda x: dgamma(h, l, x), lambda x: ddgamma(
         h, l, x), mu, m, t)
     for i in res:
-        print(gamma(h, l, i[0]))
+        print("%.16g %.16g" % gamma(h, l, i[0]))
     """
     t = np.linspace(0, t, 101)
     plt.plot(t, res[:, 0], 'b', label='S(t)')
@@ -31,4 +31,4 @@ def test(mu, m, h, l):
     plt.grid()
     plt.show()
     """
-test(0, 450, 3, 11)
+test(0, 0.450, 3, 11)
