@@ -1,10 +1,9 @@
 from scipy.integrate import odeint as edo
 import numpy as np
 
-def solution(dgamma, ddgamma, mu, m, t):
-    y0 = [0, 0]
-    t1 = np.linspace(0, t, 101)
-    return edo(f, y0, t1, args=(m, mu, dgamma, ddgamma))
+def solution(dgamma, ddgamma, mu, m, t1, n, y0):
+    t = np.linspace(0, t1, n)
+    return edo(f, y0, t, args=(m, mu, dgamma, ddgamma))
 
 def f(y, t, m, mu, dgamma, ddgamma):
     s, ds = y
