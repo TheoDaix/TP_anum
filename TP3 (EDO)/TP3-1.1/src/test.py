@@ -21,15 +21,27 @@ def test(mu, m, h, l):
         print("%.16g %.16g" % gamma(h, l, i[0]))
     """
     Test graphique :
+    """
     t = np.linspace(0, t, 101)
     plt.plot(t, res[:, 0], 'b', label='S(t)')
     plt.plot(t, res[:, 1], 'g', label='dS(t)')
+    gamma_S_0 = []
+    gamma_S_1 = []
     for j in res:
         i = gamma(h, l, j[0])
-        plt.plot(i[0], i[1], 'go')
+        gamma_S_0.append(i[0])
+        gamma_S_1.append(i[1])
     plt.legend(loc='best')
     plt.xlabel('t')
     plt.grid()
     plt.show()
-    """
+
+    x = np.array(gamma_S_0)
+    y = np.array(gamma_S_1)
+    plt.plot(x, y, 'r', label='gamma(S(t))')
+    plt.legend(loc='best')
+    plt.xlabel('t')
+    plt.grid()
+    plt.show()
+
 test(0, 0.450, 3, 11)
