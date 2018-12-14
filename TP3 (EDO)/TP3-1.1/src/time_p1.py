@@ -59,6 +59,7 @@ def graphe(m, mu, t, y0, a):
     x = np.array(gamma_S_0)
     y = np.array(gamma_S_1)
     plt.plot(x, y, 'r', label='gamma(S(t))')
+    plt.plot(gamma_S_0[100], gamma_S_1[100], 'ko')
     plt.legend(loc='best')
     plt.xlabel('t')
     plt.grid()
@@ -69,4 +70,4 @@ if __name__ == "__main__":
     a = float(sys.argv[2])
     t1 = time_p1(m, a, 0.3)
     print(t1)
-    graphe(m, 0.3, t1, (0, 0), a)
+    graphe(m, 0.647423, 5*t1, (0, 0), a)
