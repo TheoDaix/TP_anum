@@ -4,23 +4,37 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def gamma(h, l, t):
+    """
+    Methode gamma(s) dependant de deux parametre h (la hauteur du plan incline)
+    et l (la longueur du plan incline).
+    """
     return (l*t, h*(1-t))
 
 def dgamma(h, l, t):
+    """
+    Derivee de gamma(s).
+    """
     return (l, -h)
 
 def ddgamma(h, l, t):
+    """
+    Derivee seconde de gamma(s).
+    """
     return (0, 0)
 
 def test(mu, m, h, l):
+    """
+    Test de la methode "soltion" du fichier "trajectoire.py".
+    """
     theta = atan(h/l)
     t = sqrt(2*l/(9.81*cos(theta)*sin(theta)))
-    res = trajectoire.solution(lambda x: dgamma(h, l, x), lambda x: ddgamma(
-        h, l, x), mu, m, t, 101, (0, 0))
+    res = trajectoire.solution(lambda x: dgamma(h, l, x),
+                               lambda x: ddgamma(h, l, x),
+                               mu, m, t, 101, (0, 0))
     for i in res:
         print("%.16g %.16g" % gamma(h, l, i[0]))
     """
-    Test graphique :
+    Test graphique.
     """
     t = np.linspace(0, t, 101)
     plt.plot(t, res[:, 0], 'b', label='S(t)')
@@ -35,7 +49,6 @@ def test(mu, m, h, l):
     plt.xlabel('t')
     plt.grid()
     plt.show()
-
     x = np.array(gamma_S_0)
     y = np.array(gamma_S_1)
     plt.plot(x, y, 'r', label='gamma(S(t))')

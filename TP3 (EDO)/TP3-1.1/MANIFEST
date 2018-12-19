@@ -3,7 +3,9 @@ MANIFEST.in
 README.md
 setup.py
 doc/doc.md
-src/q1.py
-src/q2.py
-src/q3.py
+src/graph.py
+src/sup_mu.py
+src/test.py
+src/time_p1.py
+src/trajectoire.py
 tests/tests.py

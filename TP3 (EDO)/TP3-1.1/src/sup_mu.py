@@ -1,72 +1,38 @@
-import time_p1 as tp
+import time_p1 as tp, scipy.optimize as spo
 import trajectoire, sys
 from math import pi
 
-def sup_mu(m, a, t):
+def f(m, a, t, mu, y0):
+    """
+    Fonction dont on va rechercher les racines (en fonction de mu) dependant
+    de plusieurs parametres : m (la masse), a (le parametre de la fonction
+    gamma), t (le temps) et y0 (le point de depart).
+    La racine correspondra au frottement le plus grand tel que le mobile
+    passe le sommet p2.
+    """
+    res = trajectoire.solution(lambda x: tp.dgamma(x, a), lambda x:
+                               tp.ddgamma(x, a), mu, m, t, 2, y0)
+    return res[1][0] - 2 * pi
+
+def sup_mu(m, a):
+    """
+    Fonction principale pour rechercher le coefficient de frottements mu le
+    plus eleve tel que le mobile passe le sommet p2. Cette methode depend des
+    deux parametres m (la masse) et a (parametre de la fonction gamma).
+    """
     mu = 0
-    arret = True #inutile si on garde ça
-    while (arret):
-        res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                                   lambda x: tp.ddgamma(x, a),
-                                   mu, m, t, 2, (0, 0))
-        """
-        while (res[1][0] < pi):
-            t += 0.1
-            res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                                       lambda x: tp.ddgamma(x, a),
-                                       mu, m, t, 2, y0)
-        while (res[1][0] > pi and res[1][0] < 2 * pi):
-            t += 0.1
-            res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                                       lambda x: tp.ddgamma(x, a),
-                                       mu, m, t, 2, y0)
-        """
-        if (res[1][0] <= 2 * pi):
-            arret = False
-        else:
-            mu += 0.01
+    while (f(m, a, 60, mu, (0,0)) > 0):
+        mu += 0.01
     if (mu == 0):
         return "AUCUN"
     else:
-        return recherche_mu_boucle(m, (0, 0), a, mu - 0.01, mu, t)
+        return spo.brentq(lambda x: f(m, a, 60, x, (0, 0)), mu - 0.01, mu)
 
-def recherche_mu(m, y0, a, mu0, mu, t):
-    milieu = (mu0 + mu)/2
-    res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                               lambda x: tp.ddgamma(x, a),
-                               milieu, m, t, 2, y0)
-    """
-    while (res[1][0] < pi):
-        t += 0.1
-        res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                                   lambda x: tp.ddgamma(x, a),
-                                   milieu, m, t, 2, y0)
-    while (res[1][0] > pi and res[1][0] < 2 * pi):
-        t += 0.1
-        res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                                   lambda x: tp.ddgamma(x, a),
-                                   milieu, m, t, 2, y0)
-    """
-
-    if (abs(mu - mu0)/abs(mu) < 1e-8):
-        return milieu
-    if (res[1][0] <= pi):
-        return recherche_mu(m, y0, a, mu0, milieu, t)
-    else:
-        return recherche_mu(m, y0, a, milieu, mu, t)
-def recherche_mu_boucle(m, y0, a, mu0, mu, t):
-    while (abs(mu - mu0)/mu0 > 1e-8):
-        milieu = (mu0 + mu)/2
-        res = trajectoire.solution(lambda x: tp.dgamma(x, a),
-                                   lambda x: tp.ddgamma(x, a),
-                                   milieu, m, t, 2, y0)
-        if (res[1][0] <= pi):
-             mu = milieu
-        else:
-            mu0 = milieu
-    return milieu
 if __name__ == "__main__":
+    """
+    Methode "main", elle lancera la methode principale de sup_mu avec les
+    valeurs donnees en ligne de commande.
+    """
     m = float(sys.argv[1])
     a = float(sys.argv[2])
-    t_max = 100
-    print(sup_mu(m, a, t_max))
+    print(sup_mu(m, a))
